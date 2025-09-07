@@ -1,0 +1,49 @@
+import pandas as pd
+#sual1
+df = pd.read_csv("C:/Users/Admin/Downloads/train (1).csv")
+'''
+print(df.head(7))
+#sual2
+print(df.isnull().values.any())
+#sual3
+result=df.groupby("target").mean(numeric_only=True)
+print(result)
+#sual4
+result=df.groupby("target").count()
+print(result)
+#sual5
+result=df.drop("ID_code",axis=1)
+print(result)
+#sual6
+result=df.describe()
+print(result)
+mean_var_0 = df.describe().loc["mean", "var_0"]
+print(mean_var_0)
+#sual7
+mean_val=df["var_0"].mean()
+min_val=df["var_0"].min()
+filtered_df=df[(df["var_0"]>=mean_val)&(df["var_0"]<=min_val)]
+print(filtered_df)
+#sual8
+filtered_df=df[(df["var_6"]>5) &(df["var_196"]<2)]
+print(filtered_df)
+#sual9
+result=df[(df.iloc[:,10]>=20000) & (df.iloc[:,10]<=30000)]
+print(result)
+#sual10
+import pandas as pd
+features = [f"var_{i}" for i in range(10)]
+correlation_matrix = df[features].corr()
+corr_pairs = correlation_matrix.unstack()
+mask = corr_pairs.index.get_level_values(0) != corr_pairs.index.get_level_values(1)
+filtered_corr = corr_pairs[mask]
+filtered_corr = filtered_corr.drop_duplicates()
+most_corr_pair = filtered_corr.sort_values(ascending=False).head(1)
+print(most_corr_pair)
+'''
+#sual11
+mean = df["var_0"].mean()
+std = df["var_0"].std()
+#sual12
+df_filtered = df[(df["var_0"] >= mean - 3*std) & (df["var_0"] <= mean + 3*std)]
+print(df_filtered)
